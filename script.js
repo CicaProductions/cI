@@ -38,6 +38,7 @@ const default_player = {
     consoleunlocked: false
 }
 player = default_player
+showcommonotput = true
 function resetplayer() {player = default_player}
 
 function swaptab(tab) { // Switch tabs!
@@ -49,10 +50,10 @@ function swaptab(tab) { // Switch tabs!
 }
 
 function getpoints() {
-    player.points += (player.ppc.base * player.ppc.mult.totalmanual); devlog("Manual click success")
+    player.points += (player.ppc.base * player.ppc.mult.totalmanual); if (showcommonoutput) {devlog("Manual click success")}
 }
 function autoclick() {
-    player.points += (player.ppc.base * player.ppc.mult.totalauto); devlog("Autoclicker click success")
+    player.points += (player.ppc.base * player.ppc.mult.totalauto); if (showcommonoutput) {devlog("Autoclicker click success")}
 }
 
 function cardeffect(card) { // Apply a card's effect
@@ -222,7 +223,7 @@ function update() {
     else { player.buyables[1].cost = Math.floor(20 * (1.3 ** player.buyables[1].amount)) }
     player.buyables[2].cost = Math.floor(100 * (3 ** player.buyables[2].amount))
     player.buyables[3].cost = Math.floor(1000 * (1.5 ** player.buyables[3].amount))
-    devlog("Update function success")
+    if (showcommonoutput) {devlog("Update function success")}
 }
 setInterval(update, 50) // A tick is 50 ms
 
@@ -271,5 +272,8 @@ function entercommand() {
     else if (command.startsWith("point gain")) {
         const pointstogain = Number(words[2]) // The number after point gain
         player.points += pointstogain; devlog(`${pointstogain} point(s) gained`)
+    }
+    else if (command = "togglecommonoutput") {
+        showcommonoutput = !showcommonoutput; devlog(`showcommonoutput set to ${showcommonoutput}`)
     } else alert("Nonexistent command!")
 }
