@@ -38,7 +38,7 @@ const default_player = {
     consoleunlocked: false
 }
 player = default_player
-showcommonotput = true
+showcommonoutput = true
 function resetplayer() {player = default_player}
 
 function swaptab(tab) { // Switch tabs!
